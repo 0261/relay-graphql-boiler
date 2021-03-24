@@ -1,0 +1,88 @@
+schema {
+  query: Query
+}
+
+type Query {
+  """
+  get user by id
+  """
+  user(id: Int!): User!
+  """
+  get article by id
+  """
+  article(input: GetArticleInput!): Article!
+  """
+  get articles
+  """
+  articles(input: GetArticlesInput!): ArticleConnection!
+}
+
+type PageInfo {
+  """
+
+  """
+  startCursor: String
+  """
+
+  """
+  endCursor: String
+  """
+
+  """
+  hasNextPage: Boolean!
+  """
+
+  """
+  hasPreviousPage: Boolean!
+}
+
+type ArticleConnection {
+  """
+  edges
+  """
+  edges: [ArticleEdge!]!
+  """
+  pageInfo
+  """
+  pageInfo: PageInfo!
+}
+type ArticleEdge {
+  """
+  cursor
+  """
+  cursor: String
+  """
+  article node
+  """
+  node: Article!
+}
+type Article {
+  """
+  ID
+  """
+  id: ID!
+  """
+  article title
+  """
+  title: String!
+}
+
+input GetArticlesInput {
+  first: Int
+  after: String
+  before: String
+}
+input GetArticleInput {
+  id: Int!
+}
+
+type User {
+  """
+  ID
+  """
+  id: ID!
+  """
+  user name
+  """
+  name: String!
+}
